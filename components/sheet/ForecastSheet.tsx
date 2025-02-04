@@ -1,23 +1,34 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import ForecastSheetBackground from "./ForecastSheetBackground";
 import useApplicationDimensions from "@/hooks/useApplicationDimensions";
 import ForecastControl from "./elements/ForecastControl";
 import Seperator from "./elements/Seperator";
+import ForecastCapsule from "../forecast/ForecastCapsule";
+import { hourly, weekly } from "@/data/ForecastData";
+import ForecastScroll from "../forecast/ForecastScroll";
+import { ForecastType } from "@/models/Weather";
 
 const ForecastSheet = () => {
   const { width, height } = useApplicationDimensions();
-  const snapPoints = useMemo(() => ["38.5%", "83%"], []);
+
+  const snapPoints = ["38.5%", "83%"];
   const firstSnapPoint = height * parseFloat(snapPoints[0]);
-  const secondSnapPoint = height * parseFloat(snapPoints[1]);
   const cornerRadius = 44;
+
+  const capsuleRadius = 30;
+  const capsuleHeight = height * 0.17;
+  const capsuleWidth = width * 0.15;
+
+  const [selectedForecastType, setSelectedForecastType] =
+    useState<ForecastType>(ForecastType.Hourly);
 
   return (
     <View style={styles.container}>
       <BottomSheet
+        enableDynamicSizing
         snapPoints={snapPoints}
-        enablePanDownToClose={false}
         handleIndicatorStyle={{
           height: 5,
           width: 48,
@@ -32,8 +43,19 @@ const ForecastSheet = () => {
         )}
       >
         <BottomSheetView style={styles.sheetContent}>
-          <ForecastControl />
+          <ForecastControl
+            displayType={selectedForecastType}
+            onPress={(type) => setSelectedForecastType(type)}
+          />
           <Seperator width={width} height={2} />
+          <ForecastScroll
+            forecast={
+              selectedForecastType == ForecastType.Hourly ? hourly : weekly
+            }
+            capsuleWidth={capsuleWidth}
+            capsuleHeight={capsuleHeight}
+            capsuleRadius={capsuleRadius}
+          />
         </BottomSheetView>
       </BottomSheet>
     </View>

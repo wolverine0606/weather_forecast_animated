@@ -8,8 +8,6 @@ interface SeperatorProps {
 }
 
 const Seperator = ({ width, height }: SeperatorProps) => {
-  console.log(width);
-
   return (
     <Canvas style={{ width, height }}>
       <Line

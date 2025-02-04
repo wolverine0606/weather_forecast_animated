@@ -9,47 +9,98 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { Canvas, Line, LinearGradient, vec } from "@shopify/react-native-skia";
+import { ForecastType } from "@/models/Weather";
 
-const ForecastControl = () => {
+interface ForecastControlProps {
+  onPress: (forecastType: ForecastType) => void;
+  displayType: ForecastType;
+}
+
+const ForecastControl = ({ onPress, displayType }: ForecastControlProps) => {
   const [textWidth, setTextWidth] = useState(0);
 
-  const spacingX = 25;
-  const stroleWidth = 3;
+  const spacingX = 32;
+  const strokeWidth = 3;
 
   function onTextLayout(
     event: NativeSyntheticEvent<TextLayoutEventData>
   ): void {
     setTextWidth(event.nativeEvent.lines[0].width);
-    console.log(textWidth);
   }
 
   return (
     <>
       <View style={styles.forecastControl}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => onPress(ForecastType.Hourly)}>
           <Text onTextLayout={onTextLayout} style={styles.forecastText}>
             Hourly Forecast
           </Text>
+          {displayType === ForecastType.Hourly ? (
+            <Canvas
+              style={{
+                height: strokeWidth,
+                width: textWidth,
+              }}
+            >
+              <Line
+                p1={vec(0, 0)}
+                p2={vec(textWidth, 0)}
+                strokeWidth={strokeWidth}
+              >
+                <LinearGradient
+                  start={vec(0, 0)}
+                  end={vec(textWidth, 0)}
+                  colors={[
+                    "rgba(147, 112, 177, 0)",
+                    "rgba(147, 112, 177, 1)",
+                    "rgba(147, 112, 177, 0)",
+                  ]}
+                />
+              </Line>
+            </Canvas>
+          ) : null}
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => onPress(ForecastType.Weekly)}>
           <Text style={styles.forecastText}>Weekly Forecast</Text>
+          {displayType === ForecastType.Weekly ? (
+            <Canvas
+              style={{
+                height: strokeWidth,
+                width: textWidth,
+              }}
+            >
+              <Line
+                p1={vec(0, 0)}
+                p2={vec(textWidth, 0)}
+                strokeWidth={strokeWidth}
+              >
+                <LinearGradient
+                  start={vec(0, 0)}
+                  end={vec(textWidth, 0)}
+                  colors={[
+                    "rgba(147, 112, 177, 0)",
+                    "rgba(147, 112, 177, 1)",
+                    "rgba(147, 112, 177, 0)",
+                  ]}
+                />
+              </Line>
+            </Canvas>
+          ) : null}
         </TouchableOpacity>
       </View>
-      <Canvas
-        style={{ height: stroleWidth, width: textWidth, marginLeft: spacingX }}
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          width: "100%",
+        }}
       >
-        <Line p1={vec(0, 0)} p2={vec(textWidth, 0)} strokeWidth={spacingX}>
-          <LinearGradient
-            start={vec(0, 0)}
-            end={vec(textWidth, 0)}
-            colors={[
-              "rgba(147, 112, 177, 0)",
-              "rgba(147, 112, 177, 1)",
-              "rgba(147, 112, 177, 0)",
-            ]}
-          />
-        </Line>
-      </Canvas>
+        {/* {displayType === ForecastType.Hourly ? ( */}
+
+        {/* ) : ( */}
+
+        {/* )} */}
+      </View>
     </>
   );
 };

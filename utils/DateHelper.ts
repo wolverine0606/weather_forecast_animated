@@ -5,7 +5,7 @@ export const conbertDateTo12HourFormat = (date: Date) => {
   if (hours === currentHour) return "Now";
 
   const amPm = hours >= 12 ? "PM" : "AM";
-  hours = hours === 0 && 24 ? 12 : hours % 12;
+  hours = hours === 24 || hours === 12 ? 12 : hours % 12;
 
   return `${hours} ${amPm}`;
 };

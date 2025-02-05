@@ -14,9 +14,9 @@ const Weatherinfo = ({ weather }: WeatherinfoProps) => {
   const { height } = useApplicationDimensions();
   const { top } = useSafeAreaInsets();
 
-  const weatherInfoMarigin = top + height / 17;
+  const weatherInfoMargin = top + height / 17;
 
-  const myStyles = styles(weatherInfoMarigin);
+  const myStyles = styles(weatherInfoMargin);
 
   return (
     <View style={myStyles.container}>

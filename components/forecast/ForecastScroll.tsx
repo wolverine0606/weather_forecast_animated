@@ -1,8 +1,9 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
 import { Forecast } from "@/models/Weather";
 import { ScrollView } from "react-native-gesture-handler";
 import ForecastCapsule from "./ForecastCapsule";
+import useApplicationDimensions from "@/hooks/useApplicationDimensions";
 
 interface ForecastScrollProps {
   forecast: Forecast[];
@@ -17,13 +18,24 @@ const ForecastScroll = ({
   capsuleRadius,
   capsuleWidth,
 }: ForecastScrollProps) => {
+  const { PADDING_HORISONTAL } = useApplicationDimensions();
   return (
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
-      style={{ paddingTop: 20, paddingLeft: 20 }}
+      style={{
+        paddingTop: capsuleHeight * 0.1,
+        paddingLeft: PADDING_HORISONTAL / 2,
+      }}
+      contentContainerStyle={{ paddingRight: PADDING_HORISONTAL }}
     >
-      <View style={{ flex: 1, flexDirection: "row", gap: 12 }}>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          gap: capsuleWidth / 5,
+        }}
+      >
         {forecast.map((forecast, index) => (
           <ForecastCapsule
             key={index}

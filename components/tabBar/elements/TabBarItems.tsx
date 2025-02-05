@@ -7,7 +7,7 @@ import useApplicationDimensions from "@/hooks/useApplicationDimensions";
 import CircleButton from "./CircleButton";
 
 const TabBarItems = () => {
-  const { height, width } = useApplicationDimensions();
+  const { height, width, PADDING_HORISONTAL } = useApplicationDimensions();
   const TrapezoidHeight = height * 0.12;
   const TrapezoidWidth = width * 0.68;
   const CircleRadius = (TrapezoidHeight * 0.51) / 2;
@@ -18,7 +18,7 @@ const TabBarItems = () => {
         flex: 1,
         flexDirection: "row",
         justifyContent: "space-between",
-        paddingHorizontal: 32,
+        paddingHorizontal: PADDING_HORISONTAL,
 
         alignItems: "center",
       }}

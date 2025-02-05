@@ -1,5 +1,4 @@
 import {
-  LayoutChangeEvent,
   NativeSyntheticEvent,
   StyleSheet,
   Text,
@@ -10,6 +9,7 @@ import {
 import React, { useState } from "react";
 import { Canvas, Line, LinearGradient, vec } from "@shopify/react-native-skia";
 import { ForecastType } from "@/models/Weather";
+import useApplicationDimensions from "@/hooks/useApplicationDimensions";
 
 interface ForecastControlProps {
   onPress: (forecastType: ForecastType) => void;
@@ -19,7 +19,8 @@ interface ForecastControlProps {
 const ForecastControl = ({ onPress, displayType }: ForecastControlProps) => {
   const [textWidth, setTextWidth] = useState(0);
 
-  const spacingX = 32;
+  const { PADDING_HORISONTAL } = useApplicationDimensions();
+
   const strokeWidth = 3;
 
   function onTextLayout(
@@ -30,7 +31,12 @@ const ForecastControl = ({ onPress, displayType }: ForecastControlProps) => {
 
   return (
     <>
-      <View style={styles.forecastControl}>
+      <View
+        style={[
+          styles.forecastControl,
+          { paddingHorizontal: PADDING_HORISONTAL },
+        ]}
+      >
         <TouchableOpacity onPress={() => onPress(ForecastType.Hourly)}>
           <Text onTextLayout={onTextLayout} style={styles.forecastText}>
             Hourly Forecast
@@ -94,13 +100,7 @@ const ForecastControl = ({ onPress, displayType }: ForecastControlProps) => {
           justifyContent: "space-between",
           width: "100%",
         }}
-      >
-        {/* {displayType === ForecastType.Hourly ? ( */}
-
-        {/* ) : ( */}
-
-        {/* )} */}
-      </View>
+      ></View>
     </>
   );
 };
@@ -117,6 +117,5 @@ const styles = StyleSheet.create({
   forecastControl: {
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingHorizontal: 32,
   },
 });

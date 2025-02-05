@@ -40,8 +40,8 @@ const ForecastCapsule = ({
   const probabilityOpacity = probability != 0 ? 1 : 0;
 
   return (
-    <View style={{ width: width, height, borderRadius: radius }}>
-      <Canvas style={{ flex: 1, ...StyleSheet.absoluteFillObject }}>
+    <View style={{ width, height, borderRadius: radius }}>
+      <Canvas style={{ ...StyleSheet.absoluteFillObject }}>
         <RoundedRect
           x={0}
           y={0}

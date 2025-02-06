@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import Widget, { WidgetDimensionsProps } from "./base/Widget";
-import {FontAwesome5} from '@expo/vector-icons';
+import { FontAwesome5 } from "@expo/vector-icons";
 
-const RainFallWidget = ({width,height}:WidgetDimensionsProps) => {
+const RainFallWidget = ({ width, height }: WidgetDimensionsProps) => {
   return (
     <Widget width={width} height={height}>
       <Widget.Header
@@ -22,5 +22,3 @@ const RainFallWidget = ({width,height}:WidgetDimensionsProps) => {
 };
 
 export default RainFallWidget;
-
-const styles = StyleSheet.create({});

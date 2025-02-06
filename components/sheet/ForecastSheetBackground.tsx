@@ -78,5 +78,3 @@ const ForecastSheetBackground = ({
 };
 
 export default ForecastSheetBackground;
-
-const styles = StyleSheet.create({});

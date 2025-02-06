@@ -29,18 +29,17 @@ const PressureWidget = ({ width, height }: WidgetDimensionsProps) => {
               flex: 1,
               alignItems: "center",
               justifyContent: "center",
-             
             }}
           >
             <Canvas
               style={{
-                height: height /2,
+                height: height / 2,
                 width: width,
               }}
             >
               <FitBox
                 src={rect(0, 0, 100, 100)}
-                dst={rect(0, 0, width, height /2)}
+                dst={rect(0, 0, width, height / 2)}
               >
                 <Path
                   color={"white"}
@@ -58,5 +57,3 @@ const PressureWidget = ({ width, height }: WidgetDimensionsProps) => {
 };
 
 export default PressureWidget;
-
-const styles = StyleSheet.create({});

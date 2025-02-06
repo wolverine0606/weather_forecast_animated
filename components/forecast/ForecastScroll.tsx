@@ -54,5 +54,3 @@ const ForecastScroll = ({
 };
 
 export default ForecastScroll;
-
-const styles = StyleSheet.create({});

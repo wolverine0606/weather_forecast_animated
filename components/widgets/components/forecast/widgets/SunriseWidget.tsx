@@ -93,5 +93,3 @@ const SunriseWidget = ({ width, height }: WidgetDimensionsProps) => {
 };
 
 export default SunriseWidget;
-
-const styles = StyleSheet.create({});

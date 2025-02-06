@@ -44,5 +44,3 @@ const WeatherTabBar = () => {
 };
 
 export default WeatherTabBar;
-
-const styles = StyleSheet.create({});

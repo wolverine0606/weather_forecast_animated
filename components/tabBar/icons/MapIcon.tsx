@@ -17,5 +17,3 @@ const MapIcon = () => {
 };
 
 export default MapIcon;
-
-const styles = StyleSheet.create({});

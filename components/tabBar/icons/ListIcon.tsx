@@ -17,5 +17,3 @@ const ListIcon = () => {
 };
 
 export default ListIcon;
-
-const styles = StyleSheet.create({});

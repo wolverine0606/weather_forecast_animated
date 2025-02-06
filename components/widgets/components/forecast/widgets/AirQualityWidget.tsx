@@ -58,5 +58,3 @@ const AirQualityWidget = ({ width, height }: WidgetDimensionsProps) => {
 };
 
 export default AirQualityWidget;
-
-const styles = StyleSheet.create({});

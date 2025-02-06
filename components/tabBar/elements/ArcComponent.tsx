@@ -41,5 +41,3 @@ const ArcComponent = ({ height, width }: ArcComponentProps) => {
 };
 
 export default ArcComponent;
-
-const styles = StyleSheet.create({});

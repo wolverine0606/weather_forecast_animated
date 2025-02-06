@@ -16,5 +16,3 @@ const RootNavigator = () => {
 };
 
 export default RootNavigator;
-
-const styles = StyleSheet.create({});

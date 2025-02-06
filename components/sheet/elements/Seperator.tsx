@@ -23,5 +23,3 @@ const Seperator = ({ width, height }: SeperatorProps) => {
 };
 
 export default Seperator;
-
-const styles = StyleSheet.create({});

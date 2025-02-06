@@ -32,5 +32,3 @@ const BackgroundGradient = ({
 };
 
 export default BackgroundGradient;
-
-const styles = StyleSheet.create({});

@@ -49,5 +49,3 @@ const TabBarItems = () => {
 };
 
 export default TabBarItems;
-
-const styles = StyleSheet.create({});

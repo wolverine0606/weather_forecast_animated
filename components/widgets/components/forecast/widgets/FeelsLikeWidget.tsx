@@ -18,5 +18,3 @@ const FeelsLikeWidget = ({ width, height }: WidgetDimensionsProps) => {
 };
 
 export default FeelsLikeWidget;
-
-const styles = StyleSheet.create({});

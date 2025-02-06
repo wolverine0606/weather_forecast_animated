@@ -1,6 +1,7 @@
 import {
   Image,
   ImageBackground,
+  Platform,
   ScaledSize,
   StyleSheet,
   View,
@@ -12,9 +13,11 @@ import { useForecastSheetPosition } from "@/context/ForecastSheetContex";
 import Animated, {
   Extrapolation,
   interpolate,
+  interpolateColor,
   useAnimatedReaction,
   useAnimatedStyle,
   useDerivedValue,
+  useSharedValue,
 } from "react-native-reanimated";
 
 const HomeBackground = () => {
@@ -26,6 +29,22 @@ const HomeBackground = () => {
   const smokeOffsetY = height * 0.4;
 
   const animatedPosition = useForecastSheetPosition();
+
+  const leftBgColor = useSharedValue("#2E335A");
+  const rightBgColor = useSharedValue("#1C1B33");
+
+  const bgColor = useDerivedValue(() => {
+    if (Platform.OS === "ios") {
+      leftBgColor.value = interpolateColor(
+        animatedPosition.value,
+        [0, 1],
+        ["#2E335A", "#422E52"]
+      );
+    } else {
+      leftBgColor.value = animatedPosition.value > 0.5 ? "#422E52" : "#2E335A";
+    }
+    return [leftBgColor.value, rightBgColor.value];
+  });
 
   const AnimatedImgBg = Animated.createAnimatedComponent(ImageBackground);
   const animatedImgBgStyles = useAnimatedStyle(() => {
@@ -68,7 +87,7 @@ const HomeBackground = () => {
           <LinearGradient
             start={vec(0, 0)}
             end={vec(width, height)}
-            colors={["#2E335A", "#1C1B33"]}
+            colors={bgColor}
           />
         </Rect>
       </Canvas>

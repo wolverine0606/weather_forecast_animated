@@ -3,6 +3,7 @@ import React from "react";
 import { Weather } from "@/models/Weather";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import useApplicationDimensions from "@/hooks/useApplicationDimensions";
+import Animated from "react-native-reanimated";
 
 interface WeatherinfoProps {
   weather: Weather;
@@ -19,17 +20,17 @@ const Weatherinfo = ({ weather }: WeatherinfoProps) => {
   const myStyles = styles(weatherInfoMargin);
 
   return (
-    <View style={myStyles.container}>
-      <Text style={myStyles.cityText}>{city}</Text>
-      <View style={myStyles.temperatureBox}>
+    <Animated.View style={myStyles.container}>
+      <Animated.Text style={myStyles.cityText}>{city}</Animated.Text>
+      <Animated.View style={myStyles.temperatureBox}>
         <Text style={myStyles.temperatureText}>{temperature}</Text>
         <Text style={myStyles.temperatureSymbol}>°</Text>
-      </View>
-      <Text style={myStyles.conditionText}>{condition}</Text>
-      <Text style={myStyles.minMaxText}>
+      </Animated.View>
+      <Animated.Text style={myStyles.conditionText}>{condition}</Animated.Text>
+      <Animated.Text style={myStyles.minMaxText}>
         H:{high}° L:{low}°
-      </Text>
-    </View>
+      </Animated.Text>
+    </Animated.View>
   );
 };
 

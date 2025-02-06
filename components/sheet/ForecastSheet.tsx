@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import ForecastSheetBackground from "./ForecastSheetBackground";
@@ -15,8 +15,18 @@ import UvIndexWidget from "../widgets/components/forecast/widgets/UvIndexWidget"
 import SunriseWidget from "../widgets/components/forecast/widgets/SunriseWidget";
 import WindWidget from "../widgets/components/forecast/widgets/WindWidget";
 import RainFallWidget from "../widgets/components/forecast/widgets/RainFallWidget";
-import { useAnimatedReaction, useSharedValue } from "react-native-reanimated";
-import { useForecastSheetPosition } from "@/context/ForecastSheetContex";
+import Animated, {
+  useAnimatedReaction,
+  useAnimatedStyle,
+  useDerivedValue,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
+import {
+  ForecastSheetContext,
+  useForecastSheetPosition,
+} from "@/context/ForecastSheetContex";
+import { interpolateColors } from "@shopify/react-native-skia";
 
 const ForecastSheet = () => {
   const { width, height, PADDING_HORISONTAL } = useApplicationDimensions();
@@ -56,6 +66,31 @@ const ForecastSheet = () => {
 
   const [selectedForecastType, setSelectedForecastType] =
     useState<ForecastType>(ForecastType.Hourly);
+
+  const translateXhourly = useSharedValue(0);
+  const translateXWeekly = useSharedValue(width);
+
+  const animatedHourlyStyles = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateX: translateXhourly.value }],
+    };
+  });
+  const animatedWeeklyStyles = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateX: translateXWeekly.value }],
+    };
+  });
+
+  useEffect(() => {
+    if (selectedForecastType === ForecastType.Hourly) {
+      translateXhourly.value = withTiming(0);
+      translateXWeekly.value = withTiming(width);
+    } else {
+      translateXhourly.value = withTiming(-width - PADDING_HORISONTAL);
+      translateXWeekly.value = withTiming(-width);
+    }
+  }, [selectedForecastType]);
+
   return (
     <BottomSheet
       animatedPosition={currentPosition}
@@ -88,14 +123,30 @@ const ForecastSheet = () => {
           style={{ flex: 1, height: "100%", width: "100%" }}
           contentContainerStyle={{ paddingBottom: 10 }}
         >
-          <ForecastScroll
-            forecast={
-              selectedForecastType == ForecastType.Hourly ? hourly : weekly
-            }
-            capsuleWidth={capsuleWidth}
-            capsuleHeight={capsuleHeight}
-            capsuleRadius={capsuleRadius}
-          />
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Animated.View style={animatedHourlyStyles}>
+              <ForecastScroll
+                forecast={hourly}
+                capsuleWidth={capsuleWidth}
+                capsuleHeight={capsuleHeight}
+                capsuleRadius={capsuleRadius}
+              />
+            </Animated.View>
+            <Animated.View style={animatedWeeklyStyles}>
+              <ForecastScroll
+                forecast={weekly}
+                capsuleWidth={capsuleWidth}
+                capsuleHeight={capsuleHeight}
+                capsuleRadius={capsuleRadius}
+              />
+            </Animated.View>
+          </View>
+
           <View style={{ flex: 1, paddingBottom: 50, paddingTop: 30 }}>
             <AirQualityWidget height={airQualityHeight} width={bigWidgetSize} />
             <View

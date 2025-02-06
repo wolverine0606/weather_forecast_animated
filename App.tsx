@@ -1,10 +1,9 @@
-import React, { useCallback } from "react";
-import { StatusBar } from "expo-status-bar";
+import React, { useState, useEffect, useCallback } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import "react-native-reanimated";
 import Home from "./screens/Home";
 import BasicAnimation from "./screens/BasicAnimation";
 
@@ -17,17 +16,24 @@ export default function App() {
     "SF-semibold": require("./assets/fonts/SF-Pro-Display-Semibold.otf"),
   });
 
-  const onFontsLoaded = useCallback(() => {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
     if (fontsLoaded) {
-      SplashScreen.hideAsync();
+      setTimeout(() => {
+        setIsReady(true);
+        SplashScreen.hideAsync();
+      }, 2000); // 5 seconds delay
     }
   }, [fontsLoaded]);
-  if (!fontsLoaded) {
+
+  if (!fontsLoaded || !isReady) {
     return null;
   }
+
   return (
-    <SafeAreaProvider onLayout={onFontsLoaded}>
-      <GestureHandlerRootView style={{ flex: 1 }}>
+    <SafeAreaProvider>
+      <GestureHandlerRootView style={{ flex: 1, backgroundColor: "black" }}>
         <Home />
         {/* <BasicAnimation /> */}
         <StatusBar style="light" />

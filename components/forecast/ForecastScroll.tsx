@@ -24,16 +24,18 @@ const ForecastScroll = ({
       horizontal
       showsHorizontalScrollIndicator={false}
       style={{
+        paddingLeft: 20,
         paddingTop: capsuleHeight * 0.1,
-        paddingLeft: PADDING_HORISONTAL / 2,
+        paddingBottom: capsuleHeight * 0.05,
+        flexGrow: 0,
+        paddingRight: PADDING_HORISONTAL,
       }}
-      contentContainerStyle={{ paddingRight: PADDING_HORISONTAL }}
     >
       <View
         style={{
           flex: 1,
           flexDirection: "row",
-          gap: capsuleWidth / 5,
+          gap: capsuleWidth * 0.2,
         }}
       >
         {forecast.map((forecast, index) => (
@@ -46,6 +48,7 @@ const ForecastScroll = ({
           />
         ))}
       </View>
+      <View style={{ width: PADDING_HORISONTAL }} />
     </ScrollView>
   );
 };

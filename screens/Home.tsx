@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import React from "react";
 import HomeBackground from "@/components/HomeBackground";
 import Weatherinfo from "@/components/section/Weatherinfo";

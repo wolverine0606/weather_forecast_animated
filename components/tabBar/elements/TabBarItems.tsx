@@ -1,10 +1,11 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 import React from "react";
 import MapIcon from "../icons/MapIcon";
 import ListIcon from "../icons/ListIcon";
 import TrapezoidBackground from "./TrapezoidBackground";
 import useApplicationDimensions from "@/hooks/useApplicationDimensions";
 import CircleButton from "./CircleButton";
+import { useAppNavigation } from "@/utils/useAppNavigation";
 
 const TabBarItems = () => {
   const { height, width, PADDING_HORISONTAL } = useApplicationDimensions();
@@ -12,6 +13,8 @@ const TabBarItems = () => {
   const TrapezoidWidth = width * 0.68;
   const CircleRadius = (TrapezoidHeight * 0.51) / 2;
   const buttonCenterX = width / 2 - CircleRadius;
+
+  const nav = useAppNavigation();
   return (
     <View
       style={{
@@ -38,7 +41,9 @@ const TabBarItems = () => {
           <CircleButton radius={CircleRadius} pressed={pressed} />
         )}
       </Pressable>
-      <ListIcon />
+      <Pressable onPress={() => nav.navigate("WeatherList")}>
+        <ListIcon />
+      </Pressable>
     </View>
   );
 };

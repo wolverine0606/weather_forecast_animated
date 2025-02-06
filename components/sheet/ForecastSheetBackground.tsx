@@ -9,10 +9,8 @@ import {
 } from "@shopify/react-native-skia";
 import { BlurView } from "expo-blur";
 import Animated, {
-  interpolate,
   interpolateColor,
   useAnimatedStyle,
-  useDerivedValue,
 } from "react-native-reanimated";
 import { useForecastSheetPosition } from "@/context/ForecastSheetContex";
 

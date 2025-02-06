@@ -1,7 +1,6 @@
 import {
   NativeSyntheticEvent,
   StyleSheet,
-  Text,
   TextLayoutEventData,
   TouchableOpacity,
   View,

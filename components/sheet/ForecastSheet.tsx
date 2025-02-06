@@ -18,15 +18,10 @@ import RainFallWidget from "../widgets/components/forecast/widgets/RainFallWidge
 import Animated, {
   useAnimatedReaction,
   useAnimatedStyle,
-  useDerivedValue,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import {
-  ForecastSheetContext,
-  useForecastSheetPosition,
-} from "@/context/ForecastSheetContex";
-import { interpolateColors } from "@shopify/react-native-skia";
+import { useForecastSheetPosition } from "@/context/ForecastSheetContex";
 
 const ForecastSheet = () => {
   const { width, height, PADDING_HORISONTAL } = useApplicationDimensions();

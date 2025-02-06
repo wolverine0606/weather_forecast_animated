@@ -14,7 +14,6 @@ import Animated, {
   Extrapolation,
   interpolate,
   interpolateColor,
-  useAnimatedReaction,
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
@@ -61,15 +60,6 @@ const HomeBackground = () => {
       ],
     };
   });
-
-  useAnimatedReaction(
-    () => {
-      return animatedPosition.value;
-    },
-    (cv) => {
-      console.log(cv);
-    }
-  );
 
   const animatedSmokeOpacity = useDerivedValue(() => {
     return interpolate(

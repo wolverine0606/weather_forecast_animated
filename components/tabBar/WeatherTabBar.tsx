@@ -12,7 +12,6 @@ const WeatherTabBar = () => {
   return (
     <View
       style={{
-        height: TabBarHeight,
         ...StyleSheet.absoluteFillObject,
         top: height - TabBarHeight,
       }}

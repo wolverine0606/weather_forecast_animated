@@ -5,15 +5,16 @@ import Weatherinfo from "@/components/section/Weatherinfo";
 import ForecastSheet from "@/components/sheet/ForecastSheet";
 import WeatherTabBar from "@/components/tabBar/WeatherTabBar";
 import { currentWeather } from "@/data/CurrentWeather";
+import { ForecastSheetProvider } from "@/context/ForecastSheetContex";
 
 const Home = () => {
   return (
-    <>
+    <ForecastSheetProvider>
       <HomeBackground />
       <Weatherinfo weather={currentWeather} />
       <ForecastSheet />
       <WeatherTabBar />
-    </>
+    </ForecastSheetProvider>
   );
 };
 

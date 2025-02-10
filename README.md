@@ -3,7 +3,7 @@
 
 This project is a weather app UI design created using a free Figma draft that I found. The goal of this project is to boost my knowledge in **Reanimated**, **Skia Components**, and **Component Management** in React Native. It showcases the design concepts in a fully functional React Native app built with **Expo**.
 
-[https://www.figma.com/design/AH8d9RMbL3u2BRPRzNwltI/Weather%2BApp%2BUI%2BDesign%2B%2528Community%2529_CLEAN?node-id=2-2214&p=f&t=lewUBRF8YluuOuLQ-0]
+https://www.figma.com/design/AH8d9RMbL3u2BRPRzNwltI/Weather%2BApp%2BUI%2BDesign%2B%2528Community%2529_CLEAN?node-id=2-2214&p=f&t=lewUBRF8YluuOuLQ-0
 
 ## Features
 

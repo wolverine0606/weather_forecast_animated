@@ -47,7 +47,7 @@ Follow these steps to set up the project locally:
 
    This command will generate the necessary native code and prepare the project for building. If you haven't previously installed the required dependencies or set up the native environment, Expo will prompt you to do so.
 
-5. Start the app with Expo (for testing on a physical device or emulator):
+5. Start the app with Expo for ios simulator:
     ```bash
    npx expo run:ios
     ```
